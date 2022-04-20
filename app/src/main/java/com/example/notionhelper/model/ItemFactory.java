@@ -19,13 +19,13 @@ public class ItemFactory {
         return new AddDailyTaskItem();
     }
 
-    public static ArrayList<Item> getAllTasks() {
+    public static ArrayList<Item> getAllCommands() {
         ArrayList<Item> itemArrayList = new ArrayList<>();
 
-        return getAllTasks(itemArrayList);
+        return getAllCommands(itemArrayList);
     }
 
-    public static ArrayList<Item> getAllTasks(ArrayList<Item> itemArrayList) {
+    public static ArrayList<Item> getAllCommands(ArrayList<Item> itemArrayList) {
         itemArrayList.clear();
         itemArrayList.add(new AddDailyTaskItem());
 

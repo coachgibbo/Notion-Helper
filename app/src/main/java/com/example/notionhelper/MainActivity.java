@@ -17,7 +17,6 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     ActivityMainBinding binding;
-
     TabLayout tabLayout;
 
     @Override
@@ -27,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        ArrayList<Item> itemArrayList = ItemFactory.getAllTasks(); // Tasks is default
+        ArrayList<Item> itemArrayList = ItemFactory.getAllCommands(); // Commands is default
         ListAdapter listAdapter = new ListAdapter(MainActivity.this, itemArrayList);
 
         createToolbarUI();
@@ -46,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 if (tab.getPosition() == 0) {
-                    ItemFactory.getAllTasks(itemArrayList);
+                    ItemFactory.getAllCommands(itemArrayList);
                 } else if (tab.getPosition() == 1) {
                     ItemFactory.getAllScripts(itemArrayList);
                 }

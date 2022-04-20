@@ -124,7 +124,8 @@
             android:layout_height="wrap_content"
             android:textColor="@color/blue"
             android:textColorHint="@color/black"
-            android:hint="Task Name">
+            android:hint="Task Name"
+            android:inputType="textCapSentences">
 
         </EditText>
 

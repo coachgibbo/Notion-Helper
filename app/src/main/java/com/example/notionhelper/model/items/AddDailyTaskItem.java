@@ -23,9 +23,9 @@ public class AddDailyTaskItem extends Item {
 
     public AddDailyTaskItem() {
         super(
-                "Add To-Do Item",
-                "Add a custom to-do item to your daily task database with date = today or tomorrow",
-                ItemTypes.TASK.name(),
+                "Add Daily Task",
+                "Add a custom to-do item to your daily task database with date set as today or tomorrow",
+                ItemTypes.COMMAND.name(),
                 "addDailyTask"
         );
 
