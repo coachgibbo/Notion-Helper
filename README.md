@@ -13,9 +13,16 @@ In Constants.java, the following variables should be filled out:
 Once I've completed the functionality I'll move it onto AWS for 24/7 uptime.
 
 ## To-do List
-1. Add functionality to UpdateDailyTasksItem
+1. Add functionality to UpdateDailyTasksItem (Put the content of template notion pages into res folder)
+   a. Each template page will be PATCHED (Update Page) so that it's reset to date = today and status = 'not started'
+      i. Create new API for Update Page
+      ii. Store template page ID's somewhere
+      iii. Create logic for doing the reset
+   b. Get block children from each template page (Retrieve Block Children)
+   c. For each block child that is of type 'checkbox', set it to unchecked (Update Block)
 2. Create widget for AddDailyTaskItem
 3. Change Item.runItem() to take and return a DataCallback object so that the layouts can do stuff with response data
 4. Move the parameter section of activity_item.xml into a separate layout, so that this layout can be reused for different items
 5. Create ViewNextDailyTaskItem that will display the task that has status="not started", date=today and order=min(tasks)
 6. Create widget for ViewNextDailyTaskItem
+7. Refactor constants into options

@@ -5,6 +5,8 @@ import static com.example.notionhelper.common.Constants.DAILY_TASK_DATABASE;
 import android.util.Log;
 import android.widget.ImageView;
 
+import androidx.annotation.NonNull;
+
 import com.example.notionhelper.common.ItemTypes;
 import com.example.notionhelper.infrastructure.NotionClient;
 import com.example.notionhelper.infrastructure.config.NotionInterface;
@@ -29,7 +31,7 @@ public class AddDailyTaskItem extends Item {
                 "addDailyTask"
         );
 
-        this.notionInterface = NotionClient.getNotionInterface();
+        notionInterface = NotionClient.getNotionInterface();
     }
 
     @Override
@@ -44,12 +46,12 @@ public class AddDailyTaskItem extends Item {
 
         response.enqueue(new Callback<JsonObject>() {
             @Override
-            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+            public void onResponse(@NonNull Call<JsonObject> call, @NonNull Response<JsonObject> response) {
                 updateResponseGif(String.valueOf(response.code()), responseGif);
             }
 
             @Override
-            public void onFailure(Call<JsonObject> call, Throwable t) {
+            public void onFailure(@NonNull Call<JsonObject> call, @NonNull Throwable t) {
                 Log.i("AddDailyTask", "Error while calling API" + t);
             }
         });

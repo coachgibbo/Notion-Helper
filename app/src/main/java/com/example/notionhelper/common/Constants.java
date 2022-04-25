@@ -8,5 +8,6 @@ public final class Constants {
 
     public static final String DAILY_TASK_DATABASE = "xxx";
 
-    public static final String BEARER = "Bearer xxx";
+    public static final String NOTION_BASE_URL = "https://api.notion.com/v1/";
+    public static final String BEARER = "xxx";
 }
