@@ -106,74 +106,17 @@
 
     </RelativeLayout>
 
-    <RelativeLayout
-        android:id="@+id/entry1_rel"
-        android:layout_width="match_parent"
+    <androidx.fragment.app.FragmentContainerView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/item_fragment"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/description_header"
-        android:layout_marginStart="17dp"
-        android:layout_marginEnd="17dp"
-        android:paddingVertical="10dp"
-        android:background="?attr/selectableItemBackground"
-        android:clickable="true"
-        android:focusable="true">
-
-        <EditText
-            android:id="@+id/edittext_taskname"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/blue"
-            android:textColorHint="@color/black"
-            android:hint="Task Name"
-            android:inputType="textCapSentences">
-
-        </EditText>
-
-    </RelativeLayout>
-
-    <LinearLayout
-        android:id="@+id/date_rel"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/entry1_rel"
-        android:layout_marginStart="17dp"
-        android:layout_marginEnd="17dp"
-        android:paddingVertical="10dp"
-        android:background="?attr/selectableItemBackground"
-        android:clickable="true"
-        android:focusable="true"
-        android:gravity="center_horizontal">
-
-        <Button
-            android:id="@+id/date_today"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="18dp"
-            android:text="Today"
-            android:textColor="@color/white"
-            android:backgroundTint="@color/blue">
-
-        </Button>
-
-        <Button
-            android:id="@+id/date_tomorrow"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="18dp"
-            android:layout_toRightOf="@id/date_today"
-            android:text="Tomorrow"
-            android:textColor="@color/blue"
-            android:backgroundTint="@color/white">
-
-        </Button>
-
-    </LinearLayout>
+        android:layout_below="@id/description_header" />
 
     <RelativeLayout
         android:id="@+id/runbutton_rel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/date_rel"
+        android:layout_below="@id/item_fragment"
         android:paddingVertical="10dp"
         android:background="?attr/selectableItemBackground"
         android:clickable="true"
