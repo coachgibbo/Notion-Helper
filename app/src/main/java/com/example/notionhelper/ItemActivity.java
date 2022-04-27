@@ -3,7 +3,6 @@ package com.example.notionhelper;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
@@ -15,11 +14,6 @@ import com.example.notionhelper.model.ItemFactory;
 import com.example.notionhelper.view.fragments.AddDailyTaskFragment;
 import com.example.notionhelper.view.fragments.ItemFragment;
 import com.example.notionhelper.view.fragments.UpdateDailyTasksFragment;
-
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Locale;
 
 public class ItemActivity extends AppCompatActivity {
 
@@ -72,8 +66,6 @@ public class ItemActivity extends AppCompatActivity {
         responseGif = findViewById(R.id.response_gif);
 
         runButton.setOnClickListener(view -> {
-            ArrayList<String> inputs = fragment.getInputs();
-
             Glide.with(ItemActivity.this)
                     .load(R.drawable.loading)
                     .into(responseGif);

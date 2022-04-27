@@ -13,11 +13,15 @@ abstract public class Item {
     private final String itemType;
     private final String itemId;
 
+    public final NotionInterface notionInterface;
+
     public Item(String title, String description, String type, String itemId) {
         this.title = title;
         this.description = description;
         this.itemType = type;
         this.itemId = itemId;
+
+        notionInterface = NotionClient.getNotionInterface();
     }
 
     abstract public void runItem(ItemFragment fragment, ImageView responseGif);
