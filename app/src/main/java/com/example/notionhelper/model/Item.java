@@ -3,8 +3,9 @@ package com.example.notionhelper.model;
 import android.widget.ImageView;
 
 import com.example.notionhelper.R;
-
-import java.util.ArrayList;
+import com.example.notionhelper.infrastructure.NotionClient;
+import com.example.notionhelper.infrastructure.config.NotionInterface;
+import com.example.notionhelper.view.fragments.ItemFragment;
 
 abstract public class Item {
     private final String title;
@@ -19,7 +20,7 @@ abstract public class Item {
         this.itemId = itemId;
     }
 
-    abstract public void runItem(ArrayList<String> inputs, ImageView responseGif);
+    abstract public void runItem(ItemFragment fragment, ImageView responseGif);
 
     public String getTitle() {
         return title;

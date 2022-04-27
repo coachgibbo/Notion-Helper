@@ -1,6 +1,6 @@
 package com.example.notionhelper.model.items;
 
-import static com.example.notionhelper.common.Constants.DAILY_TASK_DATABASE;
+import static com.example.notionhelper.common.NotionObjectIds.DAILY_TASK_DATABASE;
 
 import android.util.Log;
 import android.widget.ImageView;
@@ -8,9 +8,8 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 
 import com.example.notionhelper.common.ItemTypes;
-import com.example.notionhelper.infrastructure.NotionClient;
-import com.example.notionhelper.infrastructure.config.NotionInterface;
 import com.example.notionhelper.model.Item;
+import com.example.notionhelper.view.fragments.ItemFragment;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
@@ -21,7 +20,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class AddDailyTaskItem extends Item {
-    private final NotionInterface notionInterface;
 
     public AddDailyTaskItem() {
         super(
@@ -30,19 +28,13 @@ public class AddDailyTaskItem extends Item {
                 ItemTypes.COMMAND.name(),
                 "addDailyTask"
         );
-
-        notionInterface = NotionClient.getNotionInterface();
     }
 
     @Override
-    public void runItem(ArrayList<String> inputs, ImageView responseGif) {
+    public void runItem(ItemFragment fragment, ImageView responseGif) {
         Log.i("AddDailyTask", "Running Item");
-        addDailyTask(inputs, responseGif);
-    }
 
-    // responseGif should be replaced by a DataCallback if we need to return data
-    private void addDailyTask(ArrayList<String> inputs, ImageView responseGif) {
-        Call<JsonObject> response = notionInterface.createPage(createBody(inputs));
+        Call<JsonObject> response = this.notionInterface.createPage(createBody(fragment.getInputs()));
 
         response.enqueue(new Callback<JsonObject>() {
             @Override

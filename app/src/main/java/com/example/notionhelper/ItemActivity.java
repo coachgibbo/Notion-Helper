@@ -79,7 +79,7 @@ public class ItemActivity extends AppCompatActivity {
                     .into(responseGif);
 
             ItemFactory.getItem(intent.getStringExtra("id"))
-                    .runItem(inputs, responseGif);
+                    .runItem(fragment, responseGif);
         });
     }
 
