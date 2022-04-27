@@ -16,10 +16,14 @@ In NotionObjectIds.java, the following variables should be filled out:
 
 ## To-do List
 1. Add functionality to UpdateDailyTasksItem *DONE*
+   
    a. Each template page will be PATCHED (Update Page) so that it's reset to date = today and status = 'not started' *DONE*
-      i. Create new API for Update Page *DONE*
-      ii. Store template page ID's somewhere *DONE*
-      iii. Create logic for doing the reset *DONE*
+      
+        i. Create new API for Update Page *DONE*
+      
+        ii. Store template page ID's somewhere *DONE*
+      
+        iii. Create logic for doing the reset *DONE*
 2. Create widget for AddDailyTaskItem
 5. Create ViewNextDailyTaskItem that will display the task that has status="not started", date=today and order=min(tasks)
 6. Create widget for ViewNextDailyTaskItem
