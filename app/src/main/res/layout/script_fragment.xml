@@ -13,13 +13,26 @@
         android:clickable="true"
         android:focusable="true">
 
+        <ProgressBar
+            android:id="@+id/script_progressbar"
+            style="@android:style/Widget.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </ProgressBar>
+
         <EditText
+            android:id="@+id/script_status"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/blue"
-            android:textColorHint="@color/black"
-            android:hint="Update Daily Tasks"
-            android:inputType="textCapSentences">
+            android:layout_below="@+id/script_progressbar"
+            android:text="Stage:"
+            android:textColor="@color/black"
+            android:textSize="22sp"
+            android:textAlignment="center"
+            android:paddingVertical="10dp"
+            android:focusable="false"
+            android:hint="">
 
         </EditText>
 
