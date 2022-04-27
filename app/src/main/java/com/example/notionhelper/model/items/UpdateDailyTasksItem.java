@@ -1,16 +1,34 @@
 package com.example.notionhelper.model.items;
 
+import static com.example.notionhelper.common.NotionObjectIds.DAILY_TASK_TEMPLATE;
+import static com.example.notionhelper.common.NotionObjectIds.DAILY_TASK_TEMPLATE_2;
+import static com.example.notionhelper.common.NotionObjectIds.DAILY_TASK_TEMPLATE_3;
+import static com.example.notionhelper.common.NotionObjectIds.DAILY_TASK_TEMPLATE_4;
+import static com.example.notionhelper.common.NotionObjectIds.DAILY_TASK_TEMPLATE_5;
+import static com.example.notionhelper.common.NotionObjectIds.DAILY_TASK_TEMPLATE_6;
+import static com.example.notionhelper.common.NotionObjectIds.DAILY_TASK_TEMPLATE_7;
+import static com.example.notionhelper.common.NotionObjectIds.DAILY_TASK_TEMPLATE_8;
+import static com.example.notionhelper.common.NotionObjectIds.DAILY_TASK_TEMPLATE_9;
+
+import android.util.Log;
 import android.widget.ImageView;
 
 import com.example.notionhelper.common.ItemTypes;
 import com.example.notionhelper.model.Item;
+import com.example.notionhelper.model.Stage;
+import com.example.notionhelper.model.StageRunner;
+import com.example.notionhelper.view.fragments.ItemFragment;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class UpdateDailyTasksItem extends Item {
+
     public UpdateDailyTasksItem() {
         super(
-                "Update Daily Tasks *TO-DO*",
+                "Update Daily Tasks",
                 "Will remove any modifications made to your daily tasks and reset the date to today",
                 ItemTypes.SCRIPT.name(),
                 "updateDailyTasks"
