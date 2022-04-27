@@ -2,8 +2,6 @@
 Personalized scripts and Android widgets to improve my Notion experience
 
 ## How to use
-The app can be cloned and ran via Android Studio.
-
 In Constants.java, the following variables should be filled out:
 
     BEARER: Your Notion generated secret
@@ -13,6 +11,10 @@ In NotionObjectIds.java, the following variables should be filled out:
     DAILY_TASK_DATABASE: The Notion ID of your daily task database
 
     DAILY_TASK_TEMPLATE_X: The Notion ID's of the pages you want updated by Update Daily Tasks
+    
+Clone the repository and open in Android Studio. For short-term use just pair device with AS and run.
+
+For long-term use go Build -> Build Bundle(s) / APK(s) -> Build APK(s) and download the generated APK on your device.
 
 ## To-do List
 1. Add functionality to UpdateDailyTasksItem *DONE*
