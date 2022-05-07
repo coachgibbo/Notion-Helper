@@ -3,11 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/share/AndroidStudioProjects/NotionHelper/app/src/main/res/drawable-v21/app_widget_background.xml" value="0.392" />
+        <entry key="..\:/Users/share/AndroidStudioProjects/NotionHelper/app/src/main/res/drawable-v21/app_widget_inner_view_background.xml" value="0.392" />
         <entry key="..\:/Users/share/AndroidStudioProjects/NotionHelper/app/src/main/res/drawable/green_progressbar.xml" value="0.1705" />
         <entry key="..\:/Users/share/AndroidStudioProjects/NotionHelper/app/src/main/res/layout/activity_item.xml" value="0.34183082271147164" />
         <entry key="..\:/Users/share/AndroidStudioProjects/NotionHelper/app/src/main/res/layout/activity_main.xml" value="0.21354166666666666" />
         <entry key="..\:/Users/share/AndroidStudioProjects/NotionHelper/app/src/main/res/layout/adddailytask_fragment.xml" value="0.1" />
+        <entry key="..\:/Users/share/AndroidStudioProjects/NotionHelper/app/src/main/res/layout/adddailytask_widget.xml" value="0.46598639455782315" />
         <entry key="..\:/Users/share/AndroidStudioProjects/NotionHelper/app/src/main/res/layout/layout_item.xml" value="0.4276094276094276" />
+        <entry key="..\:/Users/share/AndroidStudioProjects/NotionHelper/app/src/main/res/layout/script_fragment.xml" value="0.21354166666666666" />
       </map>
     </option>
   </component>

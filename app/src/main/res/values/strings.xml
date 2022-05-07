@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Notion Helper</string>
+    <string name="adddailytask_widget_description">Add a task to your Notion task database</string>
 </resources>

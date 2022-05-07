@@ -26,6 +26,7 @@ public class AddDailyTaskFragment extends ItemFragment {
         todayButton = view.findViewById(R.id.date_today);
         tomorrowButton = view.findViewById(R.id.date_tomorrow);
         taskName = view.findViewById(R.id.edittext_taskname);
+        taskName.requestFocus();
 
         createDateButtonUI();
     }
