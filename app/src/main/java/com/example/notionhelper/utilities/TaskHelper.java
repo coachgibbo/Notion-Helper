@@ -13,16 +13,20 @@ import retrofit2.Call;
 import retrofit2.Response;
 
 // Utility class to hold task retrieving functionality for both widgets and items
-public class TaskRetriever {
+public class TaskHelper {
 
     private final NotionInterface notionInterface;
 
-    public TaskRetriever() {
+    public TaskHelper() {
         this.notionInterface = NotionClient.getNotionInterface();
     }
 
     public Call<JsonObject> getTask() {
         return this.notionInterface.getPageFromDatabase(createRequestBody());
+    }
+
+    public Call<JsonObject> completeTask(String taskId) {
+        return this.notionInterface.updatePage(taskId, createCompleteTaskRequestBody());
     }
 
     public String extractTaskName(Response<JsonObject> response) {
@@ -62,15 +66,39 @@ public class TaskRetriever {
     private JsonObject createRequestBody() {
         JsonObject body = new JsonObject();
         JsonArray sorts = new JsonArray();
-
         JsonObject sortProps = new JsonObject();
+        JsonObject select = new JsonObject();
+        JsonObject filter = new JsonObject();
+
         sortProps.addProperty("property", "Order");
-        sortProps.addProperty("direction", "descending");
-
+        sortProps.addProperty("direction", "ascending");
         sorts.add(sortProps);
-        body.add("sorts", sorts);
-        body.addProperty("page_size", 1);
 
+        select.addProperty("equals", "Not started");
+        filter.addProperty("property", "Status");
+        filter.add("select", select);
+
+        body.add("sorts", sorts);
+        body.add("filter", filter);
+        body.addProperty("page_size", 1);
+        return body;
+    }
+
+    private JsonObject createCompleteTaskRequestBody() {
+        JsonObject body = new JsonObject();
+        JsonObject properties = new JsonObject();
+        JsonObject status = new JsonObject();
+        JsonObject select = new JsonObject();
+
+        select.addProperty("id", "3");
+        select.addProperty("name", "Completed");
+        select.addProperty("color", "green");
+
+        status.addProperty("type", "select");
+        status.add("select", select);
+
+        properties.add("Status", status);
+        body.add("properties", properties);
         return body;
     }
 }

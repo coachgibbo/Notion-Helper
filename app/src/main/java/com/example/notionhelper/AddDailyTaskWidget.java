@@ -15,8 +15,11 @@ import android.widget.RemoteViews;
 
 import androidx.annotation.NonNull;
 
-import com.example.notionhelper.utilities.TaskRetriever;
+import com.example.notionhelper.utilities.TaskHelper;
 import com.google.gson.JsonObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -25,7 +28,7 @@ import retrofit2.Response;
 // TO-DO: Clean this class up
 public class AddDailyTaskWidget extends AppWidgetProvider {
 
-    private String currentTaskName, currentTaskId;
+    private static Map<String, String> currentTask = new HashMap();
 
     private static RemoteViews views;
     private static AppWidgetManager widgetManager;
@@ -33,12 +36,14 @@ public class AddDailyTaskWidget extends AppWidgetProvider {
 
     private static final String refreshAction = "refresh";
     private static final String completeAction = "complete";
-    private static final TaskRetriever taskRetriever = new TaskRetriever();
+    private static final TaskHelper taskHelper = new TaskHelper();
 
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
         widgetManager = appWidgetManager;
         addDailyTaskWidget = new ComponentName(context, AddDailyTaskWidget.class);
+        currentTask.put("currentTaskName", null);
+        currentTask.put("currentTaskId", null);
 
         Intent addDailyTaskIntent = new Intent(context, ItemActivity.class);
         addDailyTaskIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
@@ -70,7 +75,7 @@ public class AddDailyTaskWidget extends AppWidgetProvider {
         if (refreshAction.equals(intent.getAction())) {
             refreshTask();
         } else if (completeAction.equals(intent.getAction())) {
-            Log.i("WIDGETTEST", "Caught the complete button press");
+            completeTask();
         }
     }
 
@@ -81,19 +86,19 @@ public class AddDailyTaskWidget extends AppWidgetProvider {
     }
 
     private void refreshTask() {
-        Call<JsonObject> nextTaskCall = taskRetriever.getTask();
+        Call<JsonObject> nextTaskCall = taskHelper.getTask();
 
         nextTaskCall.enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(@NonNull Call<JsonObject> call, @NonNull Response<JsonObject> response) {
-                Log.i("WIDGETTEST", "Inside onResponse");
-                currentTaskName = taskRetriever.extractTaskName(response);
-                if (currentTaskName == null) {
+                String newTaskName = taskHelper.extractTaskName(response);
+                if (newTaskName == null) {
                     return;
                 }
-                currentTaskId = taskRetriever.extractTaskId(response);
+                String newTaskId = taskHelper.extractTaskId(response);
+                storeTaskVariables(newTaskName, newTaskId);
 
-                views.setTextViewText(R.id.adddailytask_widget_taskname, currentTaskName);
+                views.setTextViewText(R.id.adddailytask_widget_taskname, newTaskName);
                 widgetManager.updateAppWidget(addDailyTaskWidget, views);
             }
 
@@ -102,7 +107,29 @@ public class AddDailyTaskWidget extends AppWidgetProvider {
         });
     }
 
+    private void completeTask() {
+        Call<JsonObject> completeTaskCall = taskHelper.completeTask(currentTask.get("currentTaskId"));
+
+        completeTaskCall.enqueue(new Callback<JsonObject>() {
+            @Override
+            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                if (response.code() == 200) {
+                    refreshTask();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<JsonObject> call, Throwable t) {}
+        });
+    }
+
     private Uri buildOpenURI() {
         return Uri.parse("https://www.notion.so/" + DAILY_TASK_DATABASE_NAME + "-" + DAILY_TASK_DATABASE);
+    }
+
+    // Maybe not necessary
+    private void storeTaskVariables(String name, String id) {
+        currentTask.put("currentTaskName", name);
+        currentTask.put("currentTaskId", id);
     }
 }
