@@ -78,6 +78,9 @@ public class AddDailyTaskItem extends Item {
                 "                \"name\": \"Not started\",\n" +
                 "                \"color\": \"red\"\n" +
                 "            }\n" +
+                "        },\n" +
+                "        \"Order\": {\n" +
+                "            \"number\": 900\n" +
                 "        }" +
                 "    }\n" +
                 "}").getAsJsonObject();
