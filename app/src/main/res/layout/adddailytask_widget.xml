@@ -1,4 +1,5 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center">
@@ -22,10 +23,12 @@
         </Button>
 
         <LinearLayout
+            android:id="@+id/adddailytask_widget_divider"
             android:layout_width="1dp"
             android:layout_height="match_parent"
             android:layout_toRightOf="@id/adddailytask_widget_button"
-            android:background="@color/white" />
+            android:background="@color/white"
+            android:orientation="horizontal" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -43,13 +46,15 @@
                 android:textColor="@color/white" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:id="@+id/adddailytask_widget_taskname"
+                android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="30dp"
-                android:layout_toLeftOf="@id/adddailytask_widget_completebutton"
+                android:layout_toEndOf="@id/adddailytask_widget_divider"
                 android:text="Task name goes here"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                tools:ignore="NotSibling" />
 
             <ImageButton
                 android:id="@+id/adddailytask_widget_refreshbutton"
