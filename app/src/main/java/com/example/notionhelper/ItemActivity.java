@@ -2,7 +2,6 @@ package com.example.notionhelper;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
 
@@ -51,8 +50,7 @@ public class ItemActivity extends AppCompatActivity {
         } else if (id.equals("updateDailyTasks")) {
             fragment = new UpdateDailyTasksFragment();
         } else {
-            Log.e("ERROR", "No fragment exists for given ItemId");
-            return;
+            fragment = new ItemFragment(R.layout.textview_fragment);
         }
 
         getSupportFragmentManager().beginTransaction()
