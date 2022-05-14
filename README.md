@@ -3,9 +3,13 @@ Personalized scripts and Android widgets to improve my Notion experience
 
 ## Features
 1. A main UI that displays two tabs, commands and scripts. These list the functionality available to the user and are dynamically populated by ItemFactory.
-   ![Image](github/main-ui.png)
+   
+   <img src=github/main-ui.png height=200px>
 2. A UI template for Items that displays basic metadata and a run button. ItemFragment's can be added to these to allow for request parameters and responses.
-   ![Image](github/item-ui.png)
+
+   <img src=github/item-ui.png height=200px>
+   <img src=github/item-ui2.png height=200px>
+   <img src=github/item-ui3.png height=200px>
 
 ## How to use
 In Constants.java, the following variables should be filled out:
