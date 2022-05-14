@@ -1,6 +1,5 @@
 package com.example.notionhelper;
 
-import static com.example.notionhelper.common.Constants.DAILY_TASK_DATABASE_NAME;
 import static com.example.notionhelper.common.NotionObjectIds.DAILY_TASK_DATABASE;
 
 import android.app.PendingIntent;
@@ -10,7 +9,6 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.util.Log;
 import android.widget.RemoteViews;
 
 import androidx.annotation.NonNull;
@@ -92,9 +90,6 @@ public class AddDailyTaskWidget extends AppWidgetProvider {
             @Override
             public void onResponse(@NonNull Call<JsonObject> call, @NonNull Response<JsonObject> response) {
                 String newTaskName = taskHelper.extractTaskName(response);
-                if (newTaskName == null) {
-                    return;
-                }
                 String newTaskId = taskHelper.extractTaskId(response);
                 storeTaskVariables(newTaskName, newTaskId);
 
@@ -110,6 +105,10 @@ public class AddDailyTaskWidget extends AppWidgetProvider {
     private void completeTask() {
         Call<JsonObject> completeTaskCall = taskHelper.completeTask(currentTask.get("currentTaskId"));
 
+        if (completeTaskCall == null) {
+            return;
+        }
+
         completeTaskCall.enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
@@ -124,7 +123,7 @@ public class AddDailyTaskWidget extends AppWidgetProvider {
     }
 
     private Uri buildOpenURI() {
-        return Uri.parse("https://www.notion.so/" + DAILY_TASK_DATABASE_NAME + "-" + DAILY_TASK_DATABASE);
+        return Uri.parse("https://www.notion.so/" + DAILY_TASK_DATABASE);
     }
 
     // Maybe not necessary

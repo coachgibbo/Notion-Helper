@@ -26,6 +26,10 @@ public class TaskHelper {
     }
 
     public Call<JsonObject> completeTask(String taskId) {
+        if (taskId == null) {
+            return null;
+        }
+
         return this.notionInterface.updatePage(taskId, createCompleteTaskRequestBody());
     }
 
@@ -33,6 +37,10 @@ public class TaskHelper {
         if (response.body() == null) {
             Log.e("TASKRETRIEVER", "Response body in extractTaskName is null");
             return "Error retrieving task";
+        }
+
+        if (response.body().getAsJsonArray("results").size() == 0) {
+            return "All tasks for today completed :)";
         }
 
         String rawString = response.body()
@@ -52,6 +60,10 @@ public class TaskHelper {
 
     public String extractTaskId(Response<JsonObject> response) {
         assert response.body() != null; // ATM only called after extractTaskName
+
+        if (response.body().getAsJsonArray("results").size() == 0) {
+            return null;
+        }
 
         String rawString =  response.body()
                 .getAsJsonArray("results")

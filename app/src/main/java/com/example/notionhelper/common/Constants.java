@@ -10,7 +10,4 @@ public final class Constants {
     public static final String PAGES = "pages";
     public static final String BLOCKS = "blocks";
     public static final String USERS = "users";
-
-    // Notion Constants
-    public static final String DAILY_TASK_DATABASE_NAME = "xxx";
 }
