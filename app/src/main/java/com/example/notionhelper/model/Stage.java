@@ -10,6 +10,7 @@ public class Stage {
 
     private final String name;
     private final String pageId;
+    private final String method;
     private final JsonObject jsonBody;
 
     private final NotionInterface notionInterface;
@@ -17,13 +18,19 @@ public class Stage {
     public Stage(Builder builder) {
         this.name = builder.name;
         this.pageId = builder.pageId;
+        this.method = builder.method;
         this.jsonBody = builder.jsonBody;
 
         notionInterface = NotionClient.getNotionInterface();
     }
 
-    public Call<JsonObject> updatePage() {
-        return notionInterface.updatePage(pageId, jsonBody);
+    // Update as new stage types are added
+    public Call<JsonObject> run() {
+        if (method.equals("updatePage")) {
+            return notionInterface.updatePage(pageId, jsonBody);
+        }
+
+        return null;
     }
 
     public String getName() {
@@ -33,6 +40,7 @@ public class Stage {
     public static class Builder {
         private String name;
         private String pageId;
+        private String method;
         private JsonObject jsonBody;
 
         public Builder name(String name) {
@@ -42,6 +50,11 @@ public class Stage {
 
         public Builder pageId(String pageId) {
             this.pageId = pageId;
+            return this;
+        }
+
+        public Builder method(String method) {
+            this.method = method;
             return this;
         }
 

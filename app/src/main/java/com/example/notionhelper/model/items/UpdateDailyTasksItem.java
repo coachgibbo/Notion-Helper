@@ -17,9 +17,8 @@ import com.example.notionhelper.common.ItemTypes;
 import com.example.notionhelper.model.Item;
 import com.example.notionhelper.model.Stage;
 import com.example.notionhelper.model.StageRunner;
+import com.example.notionhelper.utilities.JsonBodyHelper;
 import com.example.notionhelper.view.fragments.ItemFragment;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -48,37 +47,25 @@ public class UpdateDailyTasksItem extends Item {
         ArrayList<String> inputs = fragment.getInputs();
 
         return new ArrayList<>(Arrays.asList(
-                new Stage.Builder().name("Update Task 1 Properties").jsonBody(createBody(inputs)).pageId(DAILY_TASK_TEMPLATE).build(),
-                new Stage.Builder().name("Update Task 2 Properties").jsonBody(createBody(inputs)).pageId(DAILY_TASK_TEMPLATE_2).build(),
-                new Stage.Builder().name("Update Task 3 Properties").jsonBody(createBody(inputs)).pageId(DAILY_TASK_TEMPLATE_3).build(),
-                new Stage.Builder().name("Update Task 4 Properties").jsonBody(createBody(inputs)).pageId(DAILY_TASK_TEMPLATE_4).build(),
-                new Stage.Builder().name("Update Task 5 Properties").jsonBody(createBody(inputs)).pageId(DAILY_TASK_TEMPLATE_5).build(),
-                new Stage.Builder().name("Update Task 6 Properties").jsonBody(createBody(inputs)).pageId(DAILY_TASK_TEMPLATE_6).build(),
-                new Stage.Builder().name("Update Task 7 Properties").jsonBody(createBody(inputs)).pageId(DAILY_TASK_TEMPLATE_7).build(),
-                new Stage.Builder().name("Update Task 8 Properties").jsonBody(createBody(inputs)).pageId(DAILY_TASK_TEMPLATE_8).build(),
-                new Stage.Builder().name("Update Task 9 Properties").jsonBody(createBody(inputs)).pageId(DAILY_TASK_TEMPLATE_9).build()
-                ));
+                buildStage(inputs, "Update Task 1 Properties", DAILY_TASK_TEMPLATE),
+                buildStage(inputs, "Update Task 2 Properties", DAILY_TASK_TEMPLATE_2),
+                buildStage(inputs, "Update Task 3 Properties", DAILY_TASK_TEMPLATE_3),
+                buildStage(inputs, "Update Task 4 Properties", DAILY_TASK_TEMPLATE_4),
+                buildStage(inputs, "Update Task 5 Properties", DAILY_TASK_TEMPLATE_5),
+                buildStage(inputs, "Update Task 6 Properties", DAILY_TASK_TEMPLATE_6),
+                buildStage(inputs, "Update Task 7 Properties", DAILY_TASK_TEMPLATE_7),
+                buildStage(inputs, "Update Task 8 Properties", DAILY_TASK_TEMPLATE_8),
+                buildStage(inputs, "Update Task 9 Properties", DAILY_TASK_TEMPLATE_9))
+        );
     }
 
-    private JsonObject createBody(ArrayList<String> inputs) {
-        return new JsonParser().parse("{    \n" +
-                "    \"properties\": {\n" +
-                "        \"Date\": {\n" +
-                "            \"date\": {\n" +
-                "                \"start\": \"" + inputs.get(0) + "\",\n" +
-                "                \"end\": null,\n" +
-                "                \"time_zone\": null\n" +
-                "            }\n" +
-                "        },\n" +
-                "        \"Status\": {\n" +
-                "            \"type\": \"select\",\n" +
-                "            \"select\": {\n" +
-                "                \"id\": \"1\",\n" +
-                "                \"name\": \"Not started\",\n" +
-                "                \"color\": \"red\"\n" +
-                "            }\n" +
-                "        }\n" +
-                "    }\n" +
-                "}").getAsJsonObject();
+    private Stage buildStage(ArrayList<String> inputs, String name, String id) {
+        return new Stage.Builder()
+                .name(name)
+                .pageId(id)
+                .method("updatePage")
+                .jsonBody(JsonBodyHelper.updatePageBody(inputs))
+                .build();
     }
+
 }

@@ -21,6 +21,7 @@ import retrofit2.Response;
 
 public class StageRunner {
     public static void run(ArrayList<Stage> stages, ItemFragment fragment, ImageView responseGif) {
+        // Initialize UI elements
         TextView statusText = fragment.getView().findViewById(R.id.script_status);
         ProgressBar progressBar = fragment.getView().findViewById(R.id.script_progressbar);
         int numberOfStages = stages.size();
@@ -32,12 +33,19 @@ public class StageRunner {
                 ColorStateList.valueOf(fragment.getResources().getColor(R.color.yellow))
         );
 
+        // Run Stages
         new Handler().post(() -> {
             final int[] completedStages = {0};
+            final int[] failedStages = {0};
 
             for (int i = 0; i < stages.size(); i++) {
                 Stage currentStage = stages.get(i);
-                Call<JsonObject> response = currentStage.updatePage();
+                Call<JsonObject> response = currentStage.run();
+
+                if (response == null) {
+                    failedStages[0]++;
+                    continue;
+                }
 
                 response.enqueue(new Callback<JsonObject>() {
                     @Override
@@ -46,10 +54,16 @@ public class StageRunner {
                         completedStages[0]++;
                         statusText.setText("Stage: " + completedStages[0] + " of " + numberOfStages + "\n" + currentStage.getName() + " completed");
                         progressBar.setProgress(completedStages[0]);
+
                         if (completedStages[0] == numberOfStages) {
                             responseGif.setImageResource(R.drawable.success);
                             progressBar.setProgressTintList(
                                     ColorStateList.valueOf(fragment.getResources().getColor(R.color.green))
+                            );
+                        } else if (failedStages[0] == numberOfStages - completedStages[0]) {
+                            responseGif.setImageResource(R.drawable.failure);
+                            progressBar.setProgressTintList(
+                                    ColorStateList.valueOf(fragment.getResources().getColor(R.color.red))
                             );
                         }
                     }
@@ -57,6 +71,7 @@ public class StageRunner {
                     @Override
                     public void onFailure(@NonNull Call<JsonObject> call, @NonNull Throwable t) {
                         Log.i("STAGE", "Stage: " + currentStage.getName() + " failed " + t.getMessage());
+                        failedStages[0]++;
                     }
                 });
             }
