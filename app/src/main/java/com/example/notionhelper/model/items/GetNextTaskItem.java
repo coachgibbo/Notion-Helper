@@ -9,9 +9,9 @@ import androidx.annotation.NonNull;
 import com.example.notionhelper.R;
 import com.example.notionhelper.common.ItemTypes;
 import com.example.notionhelper.model.Item;
+import com.example.notionhelper.utilities.JsonBodyHelper;
 import com.example.notionhelper.utilities.TaskHelper;
 import com.example.notionhelper.view.fragments.ItemFragment;
-import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 import retrofit2.Call;
@@ -33,7 +33,7 @@ public class GetNextTaskItem extends Item {
     public void runItem(ItemFragment fragment, ImageView responseGif) {
         Log.i("GetNextTask", "Running Item");
 
-        Call<JsonObject> response = this.notionInterface.getPageFromDatabase(createBody());
+        Call<JsonObject> response = this.notionInterface.getPageFromDatabase(JsonBodyHelper.getPageFromDatabaseBody());
 
         response.enqueue(new Callback<JsonObject>() {
             @Override
@@ -47,22 +47,6 @@ public class GetNextTaskItem extends Item {
             @Override
             public void onFailure(@NonNull Call<JsonObject> call, @NonNull Throwable t) {}
         });
-
-
     }
 
-    private JsonObject createBody() {
-        JsonObject body = new JsonObject();
-        JsonArray sorts = new JsonArray();
-
-        JsonObject sortProps = new JsonObject();
-        sortProps.addProperty("property", "Order");
-        sortProps.addProperty("direction", "ascending");
-
-        sorts.add(sortProps);
-        body.add("sorts", sorts);
-        body.addProperty("page_size", 1);
-
-        return body;
-    }
 }

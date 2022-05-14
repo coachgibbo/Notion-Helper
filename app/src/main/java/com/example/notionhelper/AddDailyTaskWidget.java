@@ -125,9 +125,9 @@ public class AddDailyTaskWidget extends AppWidgetProvider {
         return Uri.parse("https://www.notion.so/" + DAILY_TASK_DATABASE);
     }
 
-    // Maybe not necessary
     private void storeTaskVariables(String name, String id) {
         currentTask.put("currentTaskName", name);
         currentTask.put("currentTaskId", id);
     }
+
 }
