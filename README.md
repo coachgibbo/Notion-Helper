@@ -16,6 +16,12 @@ Clone the repository and open in Android Studio. For short-term use just pair de
 
 For long-term use go Build -> Build Bundle(s) / APK(s) -> Build APK(s) and download the generated APK on your device.
 
+### How to add an Item
+1. Create a new class that extends Item in /model/items
+2. Override the runItem(ItemFragment fragment, ImageView responseGif) method with the Item functionality.
+3. Update ItemFactory to create the new Item based on its id. Also remember to update the relevant Command or Script methods.
+4. The Item will be created with the default UI. A new class that extends ItemFragment can be created in /view/fragments to provide a unique item UI.
+
 ## To-do List
 1. Add functionality to UpdateDailyTasksItem *DONE*
    
