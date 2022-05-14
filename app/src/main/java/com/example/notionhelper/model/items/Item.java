@@ -8,20 +8,19 @@ import com.example.notionhelper.infrastructure.notion.NotionInterface;
 import com.example.notionhelper.view.fragments.ItemFragment;
 
 abstract public class Item {
+
     private final String title;
     private final String description;
     private final String itemType;
     private final String itemId;
 
-    public final NotionInterface notionInterface;
+    public final NotionInterface notionInterface = NotionClient.getNotionInterface();
 
     public Item(String title, String description, String type, String itemId) {
         this.title = title;
         this.description = description;
         this.itemType = type;
         this.itemId = itemId;
-
-        notionInterface = NotionClient.getNotionInterface();
     }
 
     abstract public void runItem(ItemFragment fragment, ImageView responseGif);
@@ -49,4 +48,5 @@ abstract public class Item {
             responseGif.setImageResource(R.drawable.failure);
         }
     }
+
 }

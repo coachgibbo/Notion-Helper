@@ -1,4 +1,4 @@
-package com.example.notionhelper.model.items;
+package com.example.notionhelper.model.items.commands;
 
 import android.util.Log;
 import android.widget.ImageView;
@@ -6,6 +6,7 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 
 import com.example.notionhelper.common.ItemTypes;
+import com.example.notionhelper.model.items.Item;
 import com.example.notionhelper.utilities.JsonBodyHelper;
 import com.example.notionhelper.view.fragments.ItemFragment;
 import com.google.gson.JsonObject;
@@ -39,8 +40,9 @@ public class AddDailyTaskItem extends Item {
 
             @Override
             public void onFailure(@NonNull Call<JsonObject> call, @NonNull Throwable t) {
-                Log.i("AddDailyTask", "Error while calling API" + t);
+                Log.e("AddDailyTask", "Error while calling API " + t);
             }
         });
     }
+
 }

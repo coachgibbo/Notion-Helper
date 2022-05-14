@@ -1,4 +1,4 @@
-package com.example.notionhelper.model.items;
+package com.example.notionhelper.model.items.commands;
 
 import android.util.Log;
 import android.widget.ImageView;
@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 
 import com.example.notionhelper.R;
 import com.example.notionhelper.common.ItemTypes;
+import com.example.notionhelper.model.items.Item;
 import com.example.notionhelper.utilities.JsonBodyHelper;
 import com.example.notionhelper.utilities.TaskHelper;
 import com.example.notionhelper.view.fragments.ItemFragment;
@@ -44,7 +45,9 @@ public class GetNextTaskItem extends Item {
             }
 
             @Override
-            public void onFailure(@NonNull Call<JsonObject> call, @NonNull Throwable t) {}
+            public void onFailure(@NonNull Call<JsonObject> call, @NonNull Throwable t) {
+                Log.e("GetNextTask", "Error while calling API " + t);
+            }
         });
     }
 
