@@ -20,8 +20,6 @@ import retrofit2.Response;
 
 public class GetNextTaskItem extends Item {
 
-    private final TaskHelper taskHelper;
-
     public GetNextTaskItem() {
         super(
                 "Get Next Task",
@@ -29,7 +27,6 @@ public class GetNextTaskItem extends Item {
                 ItemTypes.COMMAND.name(),
                 "getNextTask"
         );
-        this.taskHelper = new TaskHelper();
     }
 
     @Override
@@ -42,7 +39,7 @@ public class GetNextTaskItem extends Item {
             @Override
             public void onResponse(@NonNull Call<JsonObject> call, @NonNull Response<JsonObject> response) {
                 TextView responseText = fragment.requireView().findViewById(R.id.textview_fragment);
-                responseText.setText(taskHelper.extractTaskName(response));
+                responseText.setText(TaskHelper.extractTaskName(response));
 
                 updateResponseGif(String.valueOf(response.code()), responseGif);
             }

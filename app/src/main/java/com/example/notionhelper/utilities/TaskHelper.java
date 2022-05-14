@@ -12,28 +12,27 @@ import com.google.gson.JsonObject;
 import retrofit2.Call;
 import retrofit2.Response;
 
-// Utility class to hold task retrieving functionality for both widgets and items
-public class TaskHelper {
+public final class TaskHelper {
 
-    private final NotionInterface notionInterface;
+    private static final NotionInterface notionInterface = NotionClient.getNotionInterface();
 
-    public TaskHelper() {
-        this.notionInterface = NotionClient.getNotionInterface();
+    private TaskHelper() {
+
     }
 
-    public Call<JsonObject> getTask() {
-        return this.notionInterface.getPageFromDatabase(createRequestBody());
+    public static Call<JsonObject> getTask() {
+        return notionInterface.getPageFromDatabase(createRequestBody());
     }
 
-    public Call<JsonObject> completeTask(String taskId) {
+    public static Call<JsonObject> completeTask(String taskId) {
         if (taskId == null) {
             return null;
         }
 
-        return this.notionInterface.updatePage(taskId, createCompleteTaskRequestBody());
+        return notionInterface.updatePage(taskId, createCompleteTaskRequestBody());
     }
 
-    public String extractTaskName(Response<JsonObject> response) {
+    public static String extractTaskName(Response<JsonObject> response) {
         if (response.body() == null) {
             Log.e("TASKRETRIEVER", "Response body in extractTaskName is null");
             return "Error retrieving task";
@@ -58,7 +57,7 @@ public class TaskHelper {
         return rawString.substring(1, rawString.length()-1);
     }
 
-    public String extractTaskId(Response<JsonObject> response) {
+    public static String extractTaskId(Response<JsonObject> response) {
         assert response.body() != null; // ATM only called after extractTaskName
 
         if (response.body().getAsJsonArray("results").size() == 0) {
@@ -75,7 +74,7 @@ public class TaskHelper {
         return rawString.substring(1, rawString.length()-1).replace("-", "");
     }
 
-    private JsonObject createRequestBody() {
+    private static JsonObject createRequestBody() {
         JsonObject body = new JsonObject();
         JsonArray sorts = new JsonArray();
         JsonObject sortProps = new JsonObject();
@@ -96,7 +95,7 @@ public class TaskHelper {
         return body;
     }
 
-    private JsonObject createCompleteTaskRequestBody() {
+    private static JsonObject createCompleteTaskRequestBody() {
         JsonObject body = new JsonObject();
         JsonObject properties = new JsonObject();
         JsonObject status = new JsonObject();

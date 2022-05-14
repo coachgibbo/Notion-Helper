@@ -34,7 +34,6 @@ public class AddDailyTaskWidget extends AppWidgetProvider {
 
     private static final String refreshAction = "refresh";
     private static final String completeAction = "complete";
-    private static final TaskHelper taskHelper = new TaskHelper();
 
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
@@ -84,13 +83,13 @@ public class AddDailyTaskWidget extends AppWidgetProvider {
     }
 
     private void refreshTask() {
-        Call<JsonObject> nextTaskCall = taskHelper.getTask();
+        Call<JsonObject> nextTaskCall = TaskHelper.getTask();
 
         nextTaskCall.enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(@NonNull Call<JsonObject> call, @NonNull Response<JsonObject> response) {
-                String newTaskName = taskHelper.extractTaskName(response);
-                String newTaskId = taskHelper.extractTaskId(response);
+                String newTaskName = TaskHelper.extractTaskName(response);
+                String newTaskId = TaskHelper.extractTaskId(response);
                 storeTaskVariables(newTaskName, newTaskId);
 
                 views.setTextViewText(R.id.adddailytask_widget_taskname, newTaskName);
@@ -103,7 +102,7 @@ public class AddDailyTaskWidget extends AppWidgetProvider {
     }
 
     private void completeTask() {
-        Call<JsonObject> completeTaskCall = taskHelper.completeTask(currentTask.get("currentTaskId"));
+        Call<JsonObject> completeTaskCall = TaskHelper.completeTask(currentTask.get("currentTaskId"));
 
         if (completeTaskCall == null) {
             return;
