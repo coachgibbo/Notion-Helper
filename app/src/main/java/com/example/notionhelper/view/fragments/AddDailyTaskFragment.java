@@ -68,8 +68,8 @@ public class AddDailyTaskFragment extends ItemFragment {
         return formatter.format(calendar.getTime());
     }
 
-    // Probably should implement this in a less duct-taped way
     private boolean isSelected(Button button) {
         return button.getCurrentTextColor() == getResources().getColor(R.color.white);
     }
+
 }

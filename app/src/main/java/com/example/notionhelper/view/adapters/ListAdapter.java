@@ -38,4 +38,5 @@ public class ListAdapter extends ArrayAdapter<Item> {
 
         return convertView;
     }
+
 }

@@ -37,4 +37,5 @@ public class UpdateDailyTasksFragment extends ItemFragment {
 
         return formatter.format(Calendar.getInstance().getTime());
     }
+
 }

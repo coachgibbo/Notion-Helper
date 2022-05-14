@@ -25,7 +25,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-// TO-DO: Clean this class up
 public class AddDailyTaskWidget extends AppWidgetProvider {
 
     private static Map<String, String> currentTask = new HashMap();
@@ -58,8 +57,8 @@ public class AddDailyTaskWidget extends AppWidgetProvider {
 
         views = new RemoteViews(context.getPackageName(), R.layout.adddailytask_widget);
         views.setOnClickPendingIntent(R.id.adddailytask_widget_button, pendingAddDailyTaskIntent);
-        views.setOnClickPendingIntent(R.id.adddailytask_widget_refreshbutton, getPendingSelfIntent(context, refreshAction));
         views.setOnClickPendingIntent(R.id.adddailytask_widget_openbutton, pendingBrowserIntent);
+        views.setOnClickPendingIntent(R.id.adddailytask_widget_refreshbutton, getPendingSelfIntent(context, refreshAction));
         views.setOnClickPendingIntent(R.id.adddailytask_widget_completebutton, getPendingSelfIntent(context, completeAction));
 
         refreshTask();
@@ -76,12 +75,6 @@ public class AddDailyTaskWidget extends AppWidgetProvider {
         } else if (completeAction.equals(intent.getAction())) {
             completeTask();
         }
-    }
-
-    private PendingIntent getPendingSelfIntent(Context context, String action) {
-        Intent intent = new Intent(context, this.getClass());
-        intent.setAction(action);
-        return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_IMMUTABLE);
     }
 
     private void refreshTask() {
@@ -121,6 +114,12 @@ public class AddDailyTaskWidget extends AppWidgetProvider {
             @Override
             public void onFailure(Call<JsonObject> call, Throwable t) {}
         });
+    }
+
+    private PendingIntent getPendingSelfIntent(Context context, String action) {
+        Intent intent = new Intent(context, this.getClass());
+        intent.setAction(action);
+        return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_IMMUTABLE);
     }
 
     private Uri buildOpenURI() {
