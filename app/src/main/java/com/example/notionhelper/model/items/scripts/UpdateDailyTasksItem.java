@@ -25,6 +25,8 @@ import java.util.Arrays;
 
 public class UpdateDailyTasksItem extends Item {
 
+    private final StageRunner stageRunner = new StageRunner();
+
     public UpdateDailyTasksItem() {
         super(
                 "Update Daily Tasks",
@@ -40,7 +42,7 @@ public class UpdateDailyTasksItem extends Item {
 
         ArrayList<Stage> stages = buildStages(fragment);
 
-        StageRunner.run(stages, fragment, responseGif);
+        stageRunner.run(stages, fragment, responseGif);
     }
 
     private ArrayList<Stage> buildStages(ItemFragment fragment) {

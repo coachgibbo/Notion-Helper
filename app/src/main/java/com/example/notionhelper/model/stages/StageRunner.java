@@ -20,18 +20,19 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class StageRunner {
-    public static void run(ArrayList<Stage> stages, ItemFragment fragment, ImageView responseGif) {
-        // Initialize UI elements
-        TextView statusText = fragment.getView().findViewById(R.id.script_status);
-        ProgressBar progressBar = fragment.getView().findViewById(R.id.script_progressbar);
-        int numberOfStages = stages.size();
 
-        statusText.setText("Stage: " + 0 + " of " + numberOfStages);
-        progressBar.setMax(numberOfStages);
-        progressBar.setProgress(0);
-        progressBar.setProgressTintList(
-                ColorStateList.valueOf(fragment.getResources().getColor(R.color.yellow))
-        );
+    TextView statusText;
+    ProgressBar progressBar;
+    ItemFragment fragment;
+    Integer numberOfStages;
+
+    public void run(ArrayList<Stage> stages, ItemFragment fragment, ImageView responseGif) {
+        // Initialize UI elements
+        this.fragment = fragment;
+        this.statusText = fragment.requireView().findViewById(R.id.script_status);
+        this.progressBar = fragment.requireView().findViewById(R.id.script_progressbar);
+        this.numberOfStages = stages.size();
+        initializeUI();
 
         // Run Stages
         new Handler().post(() -> {
@@ -51,30 +52,53 @@ public class StageRunner {
                     @Override
                     public void onResponse(@NonNull Call<JsonObject> call, @NonNull Response<JsonObject> response) {
                         Log.i("STAGE", "Stage: " + currentStage.getName() + " completed");
-                        completedStages[0]++;
-                        statusText.setText("Stage: " + completedStages[0] + " of " + numberOfStages + "\n" + currentStage.getName() + " completed");
-                        progressBar.setProgress(completedStages[0]);
-
-                        if (completedStages[0] == numberOfStages) {
-                            responseGif.setImageResource(R.drawable.success);
-                            progressBar.setProgressTintList(
-                                    ColorStateList.valueOf(fragment.getResources().getColor(R.color.green))
-                            );
-                        } else if (failedStages[0] == numberOfStages - completedStages[0]) {
-                            responseGif.setImageResource(R.drawable.failure);
-                            progressBar.setProgressTintList(
-                                    ColorStateList.valueOf(fragment.getResources().getColor(R.color.red))
-                            );
+                        if (response.code() != 200) {
+                            failedStages[0]++;
+                        } else {
+                            completedStages[0]++;
                         }
+                        updateUI(completedStages, failedStages, currentStage, responseGif);
                     }
 
                     @Override
                     public void onFailure(@NonNull Call<JsonObject> call, @NonNull Throwable t) {
                         Log.i("STAGE", "Stage: " + currentStage.getName() + " failed " + t.getMessage());
                         failedStages[0]++;
+                        updateUI(completedStages, failedStages, currentStage, responseGif);
                     }
                 });
             }
         });
     }
+
+    private void initializeUI() {
+        statusText.setText("Stage: " + 0 + " of " + numberOfStages);
+        progressBar.setMax(numberOfStages);
+        progressBar.setProgress(0);
+        progressBar.setProgressTintList(
+                ColorStateList.valueOf(fragment.getResources().getColor(R.color.yellow))
+        );
+    }
+
+    private void updateUI(int[] completedStages, int[] failedStages, Stage currentStage, ImageView responseGif) {
+        statusText.setText("Stage: " + completedStages[0] + " of " + numberOfStages + "\n" + currentStage.getName() + " completed");
+        progressBar.setProgress(completedStages[0]);
+
+        if (completedStages[0] + failedStages[0] != numberOfStages) {
+            return;
+        }
+
+        if (completedStages[0] == numberOfStages) {
+            responseGif.setImageResource(R.drawable.success);
+            progressBar.setProgressTintList(
+                    ColorStateList.valueOf(fragment.getResources().getColor(R.color.green))
+            );
+        } else if (failedStages[0] == numberOfStages - completedStages[0]) {
+            responseGif.setImageResource(R.drawable.failure);
+            progressBar.setProgressTintList(
+                    ColorStateList.valueOf(fragment.getResources().getColor(R.color.red))
+            );
+        }
+    }
+
 }

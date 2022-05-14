@@ -38,6 +38,7 @@ public class Stage {
     }
 
     public static class Builder {
+
         private String name;
         private String pageId;
         private String method;
@@ -66,6 +67,7 @@ public class Stage {
         public Stage build() {
             return new Stage(this);
         }
+
     }
 
 }
