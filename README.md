@@ -1,6 +1,12 @@
 # Notion-Helper
 Personalized scripts and Android widgets to improve my Notion experience
 
+## Features
+1. A main UI that displays two tabs, commands and scripts. These list the functionality available to the user and are dynamically populated by ItemFactory.
+   ![Image](github/main-ui.png)
+2. A UI template for Items that displays basic metadata and a run button. ItemFragment's can be added to these to allow for request parameters and responses.
+   ![Image](github/item-ui.png)
+
 ## How to use
 In Constants.java, the following variables should be filled out:
 
@@ -22,20 +28,4 @@ For long-term use go Build -> Build Bundle(s) / APK(s) -> Build APK(s) and downl
 3. Update ItemFactory to create the new Item based on its id. Also remember to update the relevant Command or Script methods.
 4. The Item will be created with the default UI. A new class that extends ItemFragment can be created in /view/fragments to provide a unique item UI.
 
-## To-do List
-1. Add functionality to UpdateDailyTasksItem *DONE*
-   
-   a. Each template page will be PATCHED (Update Page) so that it's reset to date = today and status = 'not started' *DONE*
-      
-        i. Create new API for Update Page *DONE*
-      
-        ii. Store template page ID's somewhere *DONE*
-      
-        iii. Create logic for doing the reset *DONE*
-2. Create widget for AddDailyTaskItem
-5. Create ViewNextDailyTaskItem that will display the task that has status="not started", date=today and order=min(tasks)
-6. Create widget for ViewNextDailyTaskItem
-7. Add a habit tracker command and perhaps widget
-8. Add a script-running widget
-10. Clean up code smells and create an architecture diagram
-11. Add clean up database command
+
