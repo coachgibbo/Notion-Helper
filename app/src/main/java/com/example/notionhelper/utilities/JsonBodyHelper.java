@@ -43,15 +43,15 @@ public final class JsonBodyHelper {
 
     public static JsonObject getPageFromDatabaseBody() {
         JsonObject body = new JsonObject();
+
         JsonArray sorts = new JsonArray();
         JsonObject sortProps = new JsonObject();
-        JsonObject select = new JsonObject();
-        JsonObject filter = new JsonObject();
-
         sortProps.addProperty("property", "Order");
         sortProps.addProperty("direction", "ascending");
         sorts.add(sortProps);
 
+        JsonObject select = new JsonObject();
+        JsonObject filter = new JsonObject();
         select.addProperty("equals", "Not started");
         filter.addProperty("property", "Status");
         filter.add("select", select);
@@ -65,14 +65,13 @@ public final class JsonBodyHelper {
     public static JsonObject completeTaskBody() {
         JsonObject body = new JsonObject();
         JsonObject properties = new JsonObject();
-        JsonObject status = new JsonObject();
-        JsonObject select = new JsonObject();
 
+        JsonObject status = new JsonObject();
+        status.addProperty("type", "select");
+        JsonObject select = new JsonObject();
         select.addProperty("id", "3");
         select.addProperty("name", "Completed");
         select.addProperty("color", "green");
-
-        status.addProperty("type", "select");
         status.add("select", select);
 
         properties.add("Status", status);
@@ -116,4 +115,5 @@ public final class JsonBodyHelper {
                 "    }\n" +
                 "}").getAsJsonObject();
     }
+
 }
