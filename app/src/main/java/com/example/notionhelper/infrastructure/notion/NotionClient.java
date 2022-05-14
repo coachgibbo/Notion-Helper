@@ -1,24 +1,21 @@
-package com.example.notionhelper.infrastructure;
+package com.example.notionhelper.infrastructure.notion;
 
 import static com.example.notionhelper.common.Constants.BEARER;
 import static com.example.notionhelper.common.Constants.NOTION_BASE_URL;
 
-import androidx.annotation.NonNull;
-
-import com.example.notionhelper.infrastructure.config.NotionInterface;
-
-import java.io.IOException;
-
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
-import okhttp3.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class NotionClient {
+public final class NotionClient {
     private static Retrofit retrofit=null;
     private static OkHttpClient httpClient=null;
+
+    private NotionClient() {
+
+    }
 
     public static NotionInterface getNotionInterface() {
         if (httpClient == null) {

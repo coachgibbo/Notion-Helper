@@ -6,7 +6,6 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 
 import com.example.notionhelper.common.ItemTypes;
-import com.example.notionhelper.model.Item;
 import com.example.notionhelper.utilities.JsonBodyHelper;
 import com.example.notionhelper.view.fragments.ItemFragment;
 import com.google.gson.JsonObject;

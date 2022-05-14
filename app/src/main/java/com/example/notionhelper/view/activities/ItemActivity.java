@@ -1,4 +1,4 @@
-package com.example.notionhelper;
+package com.example.notionhelper.view.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,8 +8,9 @@ import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
+import com.example.notionhelper.R;
 import com.example.notionhelper.databinding.ActivityItemBinding;
-import com.example.notionhelper.model.ItemFactory;
+import com.example.notionhelper.model.items.ItemFactory;
 import com.example.notionhelper.view.fragments.AddDailyTaskFragment;
 import com.example.notionhelper.view.fragments.ItemFragment;
 import com.example.notionhelper.view.fragments.UpdateDailyTasksFragment;

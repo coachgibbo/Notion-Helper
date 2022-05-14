@@ -1,6 +1,7 @@
 package com.example.notionhelper.common;
 
 public class NotionObjectIds {
+
     // Add Daily Task
     public static final String DAILY_TASK_DATABASE = "xxx";
 

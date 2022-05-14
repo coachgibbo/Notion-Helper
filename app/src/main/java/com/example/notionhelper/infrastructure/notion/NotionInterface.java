@@ -1,4 +1,4 @@
-package com.example.notionhelper.infrastructure.config;
+package com.example.notionhelper.infrastructure.notion;
 
 import static com.example.notionhelper.common.Constants.DATABASES;
 import static com.example.notionhelper.common.Constants.PAGES;

@@ -1,4 +1,4 @@
-package com.example.notionhelper.model;
+package com.example.notionhelper.model.stages;
 
 import android.content.res.ColorStateList;
 import android.os.Handler;

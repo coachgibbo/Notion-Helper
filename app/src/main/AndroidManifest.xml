@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NotionHelper">
         <receiver
-            android:name=".AddDailyTaskWidget"
+            android:name=".view.widgets.AddDailyTaskWidget"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
@@ -24,7 +24,7 @@
         </receiver>
 
         <activity
-            android:name=".MainActivity"
+            android:name=".view.activities.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -33,7 +33,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ItemActivity"
+            android:name=".view.activities.ItemActivity"
             android:exported="true"
             android:windowSoftInputMode="stateVisible"></activity>
     </application>

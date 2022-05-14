@@ -1,4 +1,4 @@
-package com.example.notionhelper.view;
+package com.example.notionhelper.view.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.notionhelper.R;
-import com.example.notionhelper.model.Item;
+import com.example.notionhelper.model.items.Item;
 
 import java.util.ArrayList;
 

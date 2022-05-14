@@ -14,9 +14,8 @@ import android.util.Log;
 import android.widget.ImageView;
 
 import com.example.notionhelper.common.ItemTypes;
-import com.example.notionhelper.model.Item;
-import com.example.notionhelper.model.Stage;
-import com.example.notionhelper.model.StageRunner;
+import com.example.notionhelper.model.stages.Stage;
+import com.example.notionhelper.model.stages.StageRunner;
 import com.example.notionhelper.utilities.JsonBodyHelper;
 import com.example.notionhelper.view.fragments.ItemFragment;
 

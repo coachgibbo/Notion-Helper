@@ -1,7 +1,7 @@
-package com.example.notionhelper.model;
+package com.example.notionhelper.model.stages;
 
-import com.example.notionhelper.infrastructure.NotionClient;
-import com.example.notionhelper.infrastructure.config.NotionInterface;
+import com.example.notionhelper.infrastructure.notion.NotionClient;
+import com.example.notionhelper.infrastructure.notion.NotionInterface;
 import com.google.gson.JsonObject;
 
 import retrofit2.Call;

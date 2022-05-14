@@ -1,8 +1,4 @@
-package com.example.notionhelper.model;
-
-import com.example.notionhelper.model.items.AddDailyTaskItem;
-import com.example.notionhelper.model.items.GetNextTaskItem;
-import com.example.notionhelper.model.items.UpdateDailyTasksItem;
+package com.example.notionhelper.model.items;
 
 import java.util.ArrayList;
 

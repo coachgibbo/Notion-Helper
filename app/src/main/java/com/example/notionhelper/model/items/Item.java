@@ -1,10 +1,10 @@
-package com.example.notionhelper.model;
+package com.example.notionhelper.model.items;
 
 import android.widget.ImageView;
 
 import com.example.notionhelper.R;
-import com.example.notionhelper.infrastructure.NotionClient;
-import com.example.notionhelper.infrastructure.config.NotionInterface;
+import com.example.notionhelper.infrastructure.notion.NotionClient;
+import com.example.notionhelper.infrastructure.notion.NotionInterface;
 import com.example.notionhelper.view.fragments.ItemFragment;
 
 abstract public class Item {

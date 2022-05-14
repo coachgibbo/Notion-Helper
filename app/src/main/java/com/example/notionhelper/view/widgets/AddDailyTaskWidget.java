@@ -1,4 +1,4 @@
-package com.example.notionhelper;
+package com.example.notionhelper.view.widgets;
 
 import static com.example.notionhelper.common.NotionObjectIds.DAILY_TASK_DATABASE;
 
@@ -13,7 +13,9 @@ import android.widget.RemoteViews;
 
 import androidx.annotation.NonNull;
 
+import com.example.notionhelper.R;
 import com.example.notionhelper.utilities.TaskHelper;
+import com.example.notionhelper.view.activities.ItemActivity;
 import com.google.gson.JsonObject;
 
 import java.util.HashMap;

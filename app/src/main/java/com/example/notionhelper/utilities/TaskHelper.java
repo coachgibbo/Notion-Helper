@@ -2,8 +2,8 @@ package com.example.notionhelper.utilities;
 
 import android.util.Log;
 
-import com.example.notionhelper.infrastructure.NotionClient;
-import com.example.notionhelper.infrastructure.config.NotionInterface;
+import com.example.notionhelper.infrastructure.notion.NotionClient;
+import com.example.notionhelper.infrastructure.notion.NotionInterface;
 import com.google.gson.JsonObject;
 
 import retrofit2.Call;

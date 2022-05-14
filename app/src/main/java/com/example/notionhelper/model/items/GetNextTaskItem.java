@@ -8,7 +8,6 @@ import androidx.annotation.NonNull;
 
 import com.example.notionhelper.R;
 import com.example.notionhelper.common.ItemTypes;
-import com.example.notionhelper.model.Item;
 import com.example.notionhelper.utilities.JsonBodyHelper;
 import com.example.notionhelper.utilities.TaskHelper;
 import com.example.notionhelper.view.fragments.ItemFragment;

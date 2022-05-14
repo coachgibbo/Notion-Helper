@@ -1,14 +1,15 @@
-package com.example.notionhelper;
+package com.example.notionhelper.view.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.notionhelper.R;
 import com.example.notionhelper.databinding.ActivityMainBinding;
-import com.example.notionhelper.view.ListAdapter;
-import com.example.notionhelper.model.ItemFactory;
-import com.example.notionhelper.model.Item;
+import com.example.notionhelper.view.adapters.ListAdapter;
+import com.example.notionhelper.model.items.ItemFactory;
+import com.example.notionhelper.model.items.Item;
 import com.google.android.material.tabs.TabLayout.Tab;
 import com.google.android.material.tabs.TabLayout;
 
