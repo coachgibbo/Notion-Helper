@@ -13,6 +13,7 @@ import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 public interface NotionInterface {
+
     @POST(PAGES)
     Call<JsonObject> createPage(
             @Body JsonObject body
@@ -28,4 +29,5 @@ public interface NotionInterface {
             @Path("pageId") String pageId,
             @Body JsonObject body
     );
+
 }

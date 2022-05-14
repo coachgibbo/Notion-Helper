@@ -10,6 +10,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public final class NotionClient {
+
     private static Retrofit retrofit=null;
     private static OkHttpClient httpClient=null;
 
@@ -47,4 +48,5 @@ public final class NotionClient {
             return chain.proceed(request);
         };
     }
+
 }
