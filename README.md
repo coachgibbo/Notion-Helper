@@ -10,8 +10,8 @@ Personalized scripts and Android widgets to improve my Notion experience
    <img src=github/item-ui.png height=200px>
    <img src=github/item-ui3.png height=200px>
    <img src=github/item-ui2.png height=200px>
-3. Items can be either commands or scripts. Commands contain a run method that define functionality, generally a simple interaction with the Notion API.
-4. Scripts consist of stages, and each stage can be programmed to contain one API call. Each stage is run individually and the UI is updated with the completion status of each stage.
+3. Items can be either commands or scripts. Commands contain a run method that defines functionality, generally a simple interaction with the Notion API.
+4. Scripts consist of stages, and each stage can be programmed to contain one API call or other action. Each stage is run individually and the UI is updated with the completion status of each stage.
 5. A widget that contains some key Notion functionality. It updates to show the next task in a database based on some provided filters and allows for quick adding and completing of tasks in a Notion database
 
 
