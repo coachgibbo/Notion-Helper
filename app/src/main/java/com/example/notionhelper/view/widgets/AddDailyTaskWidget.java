@@ -12,6 +12,7 @@ import android.net.Uri;
 import android.widget.RemoteViews;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 
 import com.example.notionhelper.R;
 import com.example.notionhelper.utilities.TaskHelper;
@@ -19,19 +20,19 @@ import com.example.notionhelper.view.activities.ItemActivity;
 import com.google.gson.JsonObject;
 
 import java.util.HashMap;
-import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.internal.EverythingIsNonNull;
 
 public class AddDailyTaskWidget extends AppWidgetProvider {
-
-    private static Map<String, String> currentTask = new HashMap();
 
     private static RemoteViews views;
     private static AppWidgetManager widgetManager;
     private static ComponentName addDailyTaskWidget;
+
+    private static final HashMap<String, String> currentTask = new HashMap<>();
 
     private static final String refreshAction = "refresh";
     private static final String completeAction = "complete";
@@ -40,8 +41,6 @@ public class AddDailyTaskWidget extends AppWidgetProvider {
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
         widgetManager = appWidgetManager;
         addDailyTaskWidget = new ComponentName(context, AddDailyTaskWidget.class);
-        currentTask.put("currentTaskName", null);
-        currentTask.put("currentTaskId", null);
 
         Intent addDailyTaskIntent = new Intent(context, ItemActivity.class);
         addDailyTaskIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
@@ -97,7 +96,7 @@ public class AddDailyTaskWidget extends AppWidgetProvider {
     }
 
     private void completeTask() {
-        Call<JsonObject> completeTaskCall = TaskHelper.completeTask(currentTask.get("currentTaskId"));
+        Call<JsonObject> completeTaskCall = TaskHelper.completeTask(currentTask.getOrDefault("currentTaskId", null));
 
         if (completeTaskCall == null) {
             return;

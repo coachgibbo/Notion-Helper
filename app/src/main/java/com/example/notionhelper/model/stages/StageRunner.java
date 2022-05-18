@@ -82,6 +82,7 @@ public class StageRunner {
         );
     }
 
+    @SuppressLint("SetTextI18n")
     private void updateUI(int[] completedStages, int[] failedStages, Stage currentStage, ImageView responseGif) {
         statusText.setText("Stage: " + completedStages[0] + " of " + numberOfStages + "\n" +
                 currentStage.getProperty(NotionPropKeys.NAME.name()) + " completed");
