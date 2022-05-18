@@ -1,5 +1,6 @@
 package com.example.notionhelper.model.stages;
 
+import android.annotation.SuppressLint;
 import android.content.res.ColorStateList;
 import android.os.Handler;
 import android.util.Log;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 
 import com.example.notionhelper.R;
+import com.example.notionhelper.common.NotionPropKeys;
 import com.example.notionhelper.view.fragments.ItemFragment;
 import com.google.gson.JsonObject;
 
@@ -51,7 +53,7 @@ public class StageRunner {
                 response.enqueue(new Callback<JsonObject>() {
                     @Override
                     public void onResponse(@NonNull Call<JsonObject> call, @NonNull Response<JsonObject> response) {
-                        Log.i("STAGE", "Stage: " + currentStage.getName() + " completed");
+                        Log.i("STAGE", "Stage: " + currentStage.getProperty(NotionPropKeys.NAME.name()) + " completed");
                         if (response.code() != 200) {
                             failedStages[0]++;
                         } else {
@@ -62,7 +64,7 @@ public class StageRunner {
 
                     @Override
                     public void onFailure(@NonNull Call<JsonObject> call, @NonNull Throwable t) {
-                        Log.i("STAGE", "Stage: " + currentStage.getName() + " failed " + t.getMessage());
+                        Log.i("STAGE", "Stage: " + currentStage.getProperty(NotionPropKeys.NAME.name()) + " failed " + t.getMessage());
                         failedStages[0]++;
                         updateUI(completedStages, failedStages, currentStage, responseGif);
                     }
@@ -81,7 +83,8 @@ public class StageRunner {
     }
 
     private void updateUI(int[] completedStages, int[] failedStages, Stage currentStage, ImageView responseGif) {
-        statusText.setText("Stage: " + completedStages[0] + " of " + numberOfStages + "\n" + currentStage.getName() + " completed");
+        statusText.setText("Stage: " + completedStages[0] + " of " + numberOfStages + "\n" +
+                currentStage.getProperty(NotionPropKeys.NAME.name()) + " completed");
         progressBar.setProgress(completedStages[0]);
 
         if (completedStages[0] + failedStages[0] != numberOfStages) {

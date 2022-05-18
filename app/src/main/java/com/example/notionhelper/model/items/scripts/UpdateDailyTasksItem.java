@@ -14,6 +14,7 @@ import android.util.Log;
 import android.widget.ImageView;
 
 import com.example.notionhelper.common.ItemTypes;
+import com.example.notionhelper.common.NotionPropKeys;
 import com.example.notionhelper.model.items.Item;
 import com.example.notionhelper.model.stages.Stage;
 import com.example.notionhelper.model.stages.StageRunner;
@@ -63,8 +64,9 @@ public class UpdateDailyTasksItem extends Item {
 
     private Stage buildStage(ArrayList<String> inputs, String name, String id) {
         return new Stage.Builder()
-                .name(name)
-                .pageId(id)
+                .addProperty(NotionPropKeys.NAME.name(), name)
+                .addProperty(NotionPropKeys.PAGEID.name(), id)
+                .addProperty(NotionPropKeys.DATE.name(), inputs.get(0))
                 .method("updatePage")
                 .jsonBody(JsonBodyHelper.updatePageBody(inputs))
                 .build();
