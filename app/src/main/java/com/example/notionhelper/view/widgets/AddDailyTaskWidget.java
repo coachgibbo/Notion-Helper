@@ -19,6 +19,7 @@ import com.example.notionhelper.utilities.TaskHelper;
 import com.example.notionhelper.view.activities.ItemActivity;
 import com.google.gson.JsonObject;
 
+import java.io.IOException;
 import java.util.HashMap;
 
 import retrofit2.Call;
@@ -72,7 +73,11 @@ public class AddDailyTaskWidget extends AppWidgetProvider {
         if (refreshAction.equals(intent.getAction())) {
             refreshTask();
         } else if (completeAction.equals(intent.getAction())) {
-            completeTask();
+            try {
+                completeTask();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -95,12 +100,8 @@ public class AddDailyTaskWidget extends AppWidgetProvider {
         });
     }
 
-    private void completeTask() {
-        Call<JsonObject> completeTaskCall = TaskHelper.completeTask(currentTask.getOrDefault("currentTaskId", null));
-
-        if (completeTaskCall == null) {
-            return;
-        }
+    private void completeTask() throws IOException {
+        Call<JsonObject> completeTaskCall = TaskHelper.completeTask(currentTask.getOrDefault("currentTaskId", TaskHelper.extractTaskId(TaskHelper.getTask().execute())));
 
         completeTaskCall.enqueue(new Callback<JsonObject>() {
             @Override
