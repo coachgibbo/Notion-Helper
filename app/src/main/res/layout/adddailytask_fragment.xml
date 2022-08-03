@@ -66,4 +66,42 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/status_rel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/date_rel"
+        android:layout_marginStart="17dp"
+        android:layout_marginEnd="17dp"
+        android:paddingVertical="10dp"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center_horizontal">
+
+        <Button
+            android:id="@+id/status_ns"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="18dp"
+            android:text="Unfinished"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/blue">
+
+        </Button>
+
+        <Button
+            android:id="@+id/status_comp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="18dp"
+            android:layout_toRightOf="@id/status_ns"
+            android:text="Finished"
+            android:textColor="@color/blue"
+            android:backgroundTint="@color/white">
+
+        </Button>
+
+    </LinearLayout>
+
 </RelativeLayout>

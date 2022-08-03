@@ -104,9 +104,9 @@ public final class JsonBodyHelper {
                 "        }," +
                 "        \"Status\": {\n" +
                 "            \"select\": {\n" +
-                "                \"id\": \"1\",\n" +
-                "                \"name\": \"Not started\",\n" +
-                "                \"color\": \"red\"\n" +
+                "                \"id\": \"" + inputs.get(2) + "\",\n" +
+                "                \"name\": \"" + inputs.get(3) + "\",\n" +
+                "                \"color\": \"" + inputs.get(4) + "\"\n" +
                 "            }\n" +
                 "        },\n" +
                 "        \"Order\": {\n" +
