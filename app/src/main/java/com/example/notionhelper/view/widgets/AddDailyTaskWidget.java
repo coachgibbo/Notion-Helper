@@ -9,11 +9,12 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.StrictMode;
 import android.widget.RemoteViews;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 
+import com.example.notionhelper.BuildConfig;
 import com.example.notionhelper.R;
 import com.example.notionhelper.utilities.TaskHelper;
 import com.example.notionhelper.view.activities.ItemActivity;
@@ -25,11 +26,10 @@ import java.util.HashMap;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.internal.EverythingIsNonNull;
 
 public class AddDailyTaskWidget extends AppWidgetProvider {
 
-    private static RemoteViews views;
+    private static final RemoteViews views = new RemoteViews(BuildConfig.APPLICATION_ID, R.layout.adddailytask_widget);
     private static AppWidgetManager widgetManager;
     private static ComponentName addDailyTaskWidget;
 
@@ -55,7 +55,6 @@ public class AddDailyTaskWidget extends AppWidgetProvider {
         PendingIntent pendingAddDailyTaskIntent = PendingIntent.getActivity(context, 0, addDailyTaskIntent, PendingIntent.FLAG_IMMUTABLE);
         PendingIntent pendingBrowserIntent = PendingIntent.getActivity(context, 0, browserIntent, PendingIntent.FLAG_IMMUTABLE);
 
-        views = new RemoteViews(context.getPackageName(), R.layout.adddailytask_widget);
         views.setOnClickPendingIntent(R.id.adddailytask_widget_button, pendingAddDailyTaskIntent);
         views.setOnClickPendingIntent(R.id.adddailytask_widget_openbutton, pendingBrowserIntent);
         views.setOnClickPendingIntent(R.id.adddailytask_widget_refreshbutton, getPendingSelfIntent(context, refreshAction));
@@ -101,6 +100,9 @@ public class AddDailyTaskWidget extends AppWidgetProvider {
     }
 
     private void completeTask() throws IOException {
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+
         Call<JsonObject> completeTaskCall = TaskHelper.completeTask(currentTask.getOrDefault("currentTaskId", TaskHelper.extractTaskId(TaskHelper.getTask().execute())));
 
         completeTaskCall.enqueue(new Callback<JsonObject>() {
