@@ -15,5 +15,6 @@ public class NotionObjectIds {
     public static final String DAILY_TASK_TEMPLATE_7 = "xxx";
     public static final String DAILY_TASK_TEMPLATE_8 = "xxx";
     public static final String DAILY_TASK_TEMPLATE_9 = "xxx";
+    public static final String DAILY_TASK_TEMPLATE_10 = "xxx";
 
 }

@@ -1,6 +1,7 @@
 package com.example.notionhelper.model.items.scripts;
 
 import static com.example.notionhelper.common.NotionObjectIds.DAILY_TASK_TEMPLATE;
+import static com.example.notionhelper.common.NotionObjectIds.DAILY_TASK_TEMPLATE_10;
 import static com.example.notionhelper.common.NotionObjectIds.DAILY_TASK_TEMPLATE_2;
 import static com.example.notionhelper.common.NotionObjectIds.DAILY_TASK_TEMPLATE_3;
 import static com.example.notionhelper.common.NotionObjectIds.DAILY_TASK_TEMPLATE_4;
@@ -58,7 +59,8 @@ public class UpdateDailyTasksItem extends Item {
                 buildStage(inputs, "Update Task 6 Properties", DAILY_TASK_TEMPLATE_6),
                 buildStage(inputs, "Update Task 7 Properties", DAILY_TASK_TEMPLATE_7),
                 buildStage(inputs, "Update Task 8 Properties", DAILY_TASK_TEMPLATE_8),
-                buildStage(inputs, "Update Task 9 Properties", DAILY_TASK_TEMPLATE_9))
+                buildStage(inputs, "Update Task 9 Properties", DAILY_TASK_TEMPLATE_9),
+                buildStage(inputs, "Update Task 10 Properties", DAILY_TASK_TEMPLATE_10))
         );
     }
 
