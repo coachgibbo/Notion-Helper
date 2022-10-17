@@ -1,6 +1,8 @@
 package com.example.notionhelper.model.items.commands;
 
+import android.content.Context;
 import android.util.Log;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
@@ -29,6 +31,8 @@ public class AddDailyTaskItem extends Item {
     @Override
     public void runItem(ItemFragment fragment, ImageView responseGif) {
         Log.i("AddDailyTask", "Running Item");
+        InputMethodManager inputManager = (InputMethodManager) fragment.getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputManager.hideSoftInputFromWindow(fragment.getView().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
 
         Call<JsonObject> response = this.notionInterface.createPage(JsonBodyHelper.createPageBody(fragment.getInputs()));
 

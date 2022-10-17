@@ -48,6 +48,8 @@ public class AddDailyTaskFragment extends ItemFragment {
         inputs.add(taskStatus.getValue1());
         inputs.add(taskStatus.getValue2());
 
+        taskName.setText("");
+
         return inputs;
     }
 

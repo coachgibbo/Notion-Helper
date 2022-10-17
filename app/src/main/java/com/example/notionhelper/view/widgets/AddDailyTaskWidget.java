@@ -29,7 +29,7 @@ import retrofit2.Response;
 
 public class AddDailyTaskWidget extends AppWidgetProvider {
 
-    private static final RemoteViews views = new RemoteViews(BuildConfig.APPLICATION_ID, R.layout.adddailytask_widget);
+    private static RemoteViews views = new RemoteViews(BuildConfig.APPLICATION_ID, R.layout.adddailytask_widget);
     private static AppWidgetManager widgetManager;
     private static ComponentName addDailyTaskWidget;
 
@@ -40,8 +40,11 @@ public class AddDailyTaskWidget extends AppWidgetProvider {
 
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
+        RemoteViews updatedView = new RemoteViews(BuildConfig.APPLICATION_ID, R.layout.adddailytask_widget);
         widgetManager = appWidgetManager;
-        addDailyTaskWidget = new ComponentName(context, AddDailyTaskWidget.class);
+        if (addDailyTaskWidget == null) {
+            addDailyTaskWidget = new ComponentName(context, AddDailyTaskWidget.class);
+        }
 
         Intent addDailyTaskIntent = new Intent(context, ItemActivity.class);
         addDailyTaskIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
@@ -55,14 +58,15 @@ public class AddDailyTaskWidget extends AppWidgetProvider {
         PendingIntent pendingAddDailyTaskIntent = PendingIntent.getActivity(context, 0, addDailyTaskIntent, PendingIntent.FLAG_IMMUTABLE);
         PendingIntent pendingBrowserIntent = PendingIntent.getActivity(context, 0, browserIntent, PendingIntent.FLAG_IMMUTABLE);
 
-        views.setOnClickPendingIntent(R.id.adddailytask_widget_button, pendingAddDailyTaskIntent);
-        views.setOnClickPendingIntent(R.id.adddailytask_widget_openbutton, pendingBrowserIntent);
-        views.setOnClickPendingIntent(R.id.adddailytask_widget_refreshbutton, getPendingSelfIntent(context, refreshAction));
-        views.setOnClickPendingIntent(R.id.adddailytask_widget_completebutton, getPendingSelfIntent(context, completeAction));
+        updatedView.setOnClickPendingIntent(R.id.adddailytask_widget_button, pendingAddDailyTaskIntent);
+        updatedView.setOnClickPendingIntent(R.id.adddailytask_widget_openbutton, pendingBrowserIntent);
+        updatedView.setOnClickPendingIntent(R.id.adddailytask_widget_refreshbutton, getPendingSelfIntent(context, refreshAction));
+        updatedView.setOnClickPendingIntent(R.id.adddailytask_widget_completebutton, getPendingSelfIntent(context, completeAction));
 
         refreshTask();
 
-        appWidgetManager.updateAppWidget(addDailyTaskWidget, views);
+        appWidgetManager.updateAppWidget(addDailyTaskWidget, updatedView);
+        views = updatedView;
     }
 
     @Override
